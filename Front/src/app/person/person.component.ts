@@ -3,7 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 
-import { person } from 'src/person';
+import { person } from 'src/app/person/person';
 
 import { PersonserviceService } from '../personservice.service';
 
@@ -14,8 +14,9 @@ import { PersonserviceService } from '../personservice.service';
 })
 export class PersonComponent implements OnInit {
   public persons:person[];
+  public showPersonForm=false;
 
-  constructor(private personserviceService :PersonserviceService) { 
+  constructor(private personserviceService :PersonserviceService) {
     this.personserviceService.getpersons().subscribe((res) =>{
       debugger
       this.persons= res as person[];
@@ -24,5 +25,9 @@ export class PersonComponent implements OnInit {
 
   ngOnInit(): void {
   }
+public onAddPerson(){
+  debugger
+  this.showPersonForm=true;
+}
 
 }
