@@ -1,14 +1,32 @@
-<form [formGroup]="personForm" (ngSubmit)="onSubmit()">
 
-  <label>
-    First Name:
-    <input type="text" formControlName="firstName">
-  </label>
+<button type="button" class="btn btn-info btn-block"
+        (click)="openModal(template)">Add new person</button>
 
-  <label>
-    Last Name:
-    <input type="text" formControlName="lastName">
-  </label>
-  <button type="submit" [disabled]="!personForm.valid">Submit</button>
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">welcome</h4>
+        <button type="button" class="close pull-right"
+                aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
 
-</form>
+        <label>
+          First Name:
+          <input class="inpu" type="text" formControlName="firstName">
+        </label>
+
+        <label>
+          Last Name:
+          <input type="text" formControlName="lastName">
+        </label>
+        <br>
+        <button class="btn btn-info" type="submit" [disabled]="!personForm.valid">Submit</button>
+
+      </form>
+    </div>
+</ng-template>
+
+

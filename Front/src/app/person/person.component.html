@@ -1,10 +1,10 @@
 
 <h1 class="text-center">zhene.com</h1>
 <div class="d-flex justify-content-end">
-  <button (click)="onAddPerson()" class="btn btn-primary" >Add person</button>
+ <!---- <button (click)="onAddPerson()" class="btn btn-primary" >Add person</button>-->
 
 </div>
-<app-person-form *ngIf="showPersonForm"></app-person-form>
+<app-person-form (formSubmitted)="hidePersonForm()" *ngIf="showPersonForm"></app-person-form>
 
 
 
@@ -15,6 +15,7 @@
       <th scope="col">Id</th>
       <th scope="col">FirstName</th>
       <th scope="col">LastName</th>
+      <th scope="col">Details</th>
 
     </tr>
   </thead>
@@ -24,6 +25,10 @@
       <th scope="row">{{person.id}}</th>
       <td >{{person.firstName}}</td>
       <td >{{person.lastName}}</td>
+      <td>
+        <a routerLink="/details" [queryParams]="{id:person.id}" class="btn btn-info">details</a>
+      </td>
+
 
 
     </tr>
@@ -31,5 +36,6 @@
   </tbody>
 </table>
 </div>
+<app-person-form></app-person-form>
 
 

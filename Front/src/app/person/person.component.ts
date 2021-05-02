@@ -2,6 +2,7 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { person } from 'src/app/person/person';
 
@@ -16,7 +17,7 @@ export class PersonComponent implements OnInit {
   public persons:person[];
   public showPersonForm=false;
 
-  constructor(private personserviceService :PersonserviceService) {
+  constructor(private personserviceService :PersonserviceService,private route:Router) {
     this.personserviceService.getpersons().subscribe((res) =>{
       debugger
       this.persons= res as person[];
@@ -29,5 +30,15 @@ public onAddPerson(){
   debugger
   this.showPersonForm=true;
 }
-
+public hidePersonForm():any{
+  this.showPersonForm = false;
+   this.personserviceService.getpersons().subscribe((res) =>{
+      debugger
+      this.persons= res as person[];
+    })
 }
+ public navigate(){
+this.route.navigate(['details']);
+}
+}
+
