@@ -28,4 +28,11 @@ namespace CosmosPOC.Cosmos.Models
         public string City { get; set; }
         public string Street { get; set; }
     }
+
+    public class AddChildCommand
+    {
+        public string PersonId { get; set; }
+        public string Name { get; set; }
+        public DateTime BirthDate { get; set; }
+    }
 }

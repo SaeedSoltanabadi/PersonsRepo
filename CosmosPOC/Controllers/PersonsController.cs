@@ -34,6 +34,19 @@ namespace CosmosPOC.Controllers
             await _personCosmosService.UpdateItemAsync(person.Id, person);
             return person.Id;
         }
+        
+        [HttpPut("children")]
+        public async Task<string> UpdateItem([FromBody]AddChildCommand addChildCommand)
+        {
+            var person = await _personCosmosService.GetItemAsync<Person>(addChildCommand.PersonId);
+            person.Children.Add(new Child()
+            {
+                Name = addChildCommand.Name,
+                BirthDate = addChildCommand.BirthDate
+            });
+            await _personCosmosService.UpdateItemAsync(person.Id, person);
+            return person.Id;
+        }
 
         [HttpGet]
         public async Task<List<Person>> GetAll()
